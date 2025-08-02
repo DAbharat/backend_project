@@ -5,18 +5,16 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js"
 
 const registerUser = asyncHandler( async (req,res) => {
-    const{username, email, password} = req.body
+    const{username, email, password, fullName} = req.body
     console.log("email: ", email);
 
     if (
-        [
-           fullName, email, username, password 
-        ].some(() => field?.trim() === "")
+        [fullName, email, username, password].some(field => !field || field.trim() === "")
     ) {
-        throw new ApiError(400, "All fileds are required")
+        throw new ApiError(400, "All files are required")
     }
 
-    const userExists = User.findOne({
+    const userExists = await User.findOne({
         $or: [{username}, {email}]
     })
 
@@ -24,8 +22,9 @@ const registerUser = asyncHandler( async (req,res) => {
         throw new ApiError(409, "User with same username or email already exists")
     }
 
-    const profileLocalPath = req.files?.profile[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    console.log("req.files:", req.files);
+    const profileLocalPath = req.files?.profile?.[0]?.path;
+    const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
 
     if (!profileLocalPath) {
         throw new ApiError(400, "Profile image is required")
