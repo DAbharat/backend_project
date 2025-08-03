@@ -24,8 +24,7 @@ const userSchema = new Schema({
         index: true
     },
     profile: {
-        type: String,
-        required: true
+        type: String
     },
     coverImage: {
         type: String
@@ -44,7 +43,7 @@ const userSchema = new Schema({
     })
 
 userSchema.pre("save", async function (next) {
-    if (!this.isModidied("password")) return next();
+    if (!this.isModified("password")) return next();
 
     this.password = await bcrypt.hash(this.password, 10)
     next();

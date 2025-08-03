@@ -24,32 +24,44 @@ const registerUser = asyncHandler(async (req, res) => {
 
     console.log("req.files:", req.files);
 
-    const profileLocalPath = req.files?.profile[0]?.path;
+    //const profileLocalPath = req.files?.profile[0]?.path;
     //const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
+
+    let profileLocalPath;
+    if (req.files && Array.isArray(req.files.profile) && req.files.profile.length > 0) {
+        profileLocalPath = req.files.profile[0].path
+    }
 
     let coverImageLocalPath;
     if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
         coverImageLocalPath = req.files.coverImage[0].path
     }
 
-    if (!profileLocalPath) {
-        throw new ApiError(400, "Profile image is required")
+    // if (!profileLocalPath) {
+    //     throw new ApiError(400, "Profile image is required")
+    // }
+
+    let profile = null;
+    if (profileLocalPath) {
+        profile = await uploadOnCloudinary(profileLocalPath);
     }
 
-    const profile = await uploadOnCloudinary(profileLocalPath);
-    const coverImage = await uploadOnCloudinary(coverImageLocalPath);
-
-    if (!profile) {
-        throw new ApiError(400, "Profile image is required")
+    let coverImage = null;
+    if (coverImageLocalPath) {
+        coverImage = await uploadOnCloudinary(coverImageLocalPath);
     }
 
-    if (!req.files || !req.files.profile || req.files.profile.length === 0) {
-        throw new ApiError(400, "Profile image not uploaded correctly");
-    }
+    // if (!profile) {
+    //     throw new ApiError(400, "Profile image is required")
+    // }
+
+    // if (!req.files || !req.files.profile || req.files.profile.length === 0) {
+    //     throw new ApiError(400, "Profile image not uploaded correctly");
+    // }
 
     const user = await User.create({
         fullName,
-        profile: profile.url,
+        profile: profile?.url || "",
         coverImage: coverImage?.url || "",
         email,
         password,
