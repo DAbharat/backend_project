@@ -326,6 +326,75 @@ const updateUserCoverImage = asyncHandler(async(req,res) => {
     .json(new ApiResponse(200, user, "Cover image updated sucessfully"))
 })
 
+const getUserAccountDetails = asyncHandler(async(req,res) => {
+    const {username} = req.params
+
+    if(!username?.trim()) {
+        throw new ApiError(400, "Username is missing")
+    }
+
+    const details = await User.aggregate([
+        {
+            $match: {
+                username: username?.toLowerCase()
+            }
+        },
+        {
+            $lookup: {
+                from: "follows",
+                localField: "_id",
+                foreignField: "following",
+                as: "followers"
+            }
+        },
+        {
+            $lookup: {
+                from: "follows",
+                localField: "_id",
+                foreignField: "followers",
+                as: "following"
+            }
+        },
+        {
+            $addFields: {
+                followersCount: {
+                    $size: "$followers"
+                },
+                followingCount: {
+                    $size: "$following"
+                },
+                isFollowing: {
+                    $cond: {
+                        if: {$in: [req.user?._id, "$followers.followers"]},
+                        then: true,
+                        else: false
+                    }
+                }
+            }
+        },
+        {
+            $project: {
+                fullName: 1,
+                username: 1,
+                followersCount: 1,
+                followingCount: 1,
+                isFollowing: 1,
+                profile: 1,
+                coverImage: 1
+            }
+        }
+    ]) 
+
+    if(!details?.length) {
+        throw new ApiError(404, "Blog page not found")
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, details[0], "User page fetched Successfully")
+    )
+})
 
 
 
@@ -338,5 +407,6 @@ export {
     getCurrentUser,
     updateAccountDetails ,
     updateUserProfile,
-    updateUserCoverImage
+    updateUserCoverImage,
+    getUserAccountDetails
 };
