@@ -333,7 +333,7 @@ const getUserAccountDetails = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Username is missing")
     }
 
-    const details = await User.aggregate([
+    const page = await User.aggregate([
         {
             $match: {
                 username: username?.toLowerCase()
@@ -395,14 +395,14 @@ const getUserAccountDetails = asyncHandler(async (req, res) => {
         }
     ])
 
-    if (!details?.length) {
+    if (!page?.length) {
         throw new ApiError(404, "Blog page not found")
     }
 
     return res
         .status(200)
         .json(
-            new ApiResponse(200, details[0], "User page fetched Successfully")
+            new ApiResponse(200, page[0], "User page fetched Successfully")
         )
 })
 
