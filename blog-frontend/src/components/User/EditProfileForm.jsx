@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProfile, updateProfile } from "../../api/user";
+import { getProfile, updateProfile } from "../../api/user.js";
 
 export default function EditProfileForm() {
   const [form, setForm] = useState({
@@ -44,10 +44,16 @@ export default function EditProfileForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white rounded-lg shadow p-6">
       <input name="fullName" value={form.fullName} placeholder="Full Name" onChange={handleChange} required className="input input-bordered w-full" />
-      <input name="profile" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
-      <input name="coverImage" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
+      <div className="flex flex-col gap-2">
+        <label className="text-sm text-gray-600">Profile Image</label>
+        <input name="profile" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <label className="text-sm text-gray-600">Cover Image</label>
+        <input name="coverImage" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
+      </div>
       <button type="submit" className="btn btn-primary w-full">Update Profile</button>
       {error && <div className="text-red-500">{error}</div>}
       {success && <div className="text-green-500">{success}</div>}

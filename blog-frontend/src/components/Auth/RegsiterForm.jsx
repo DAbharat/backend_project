@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { register } from "../../api/auth";
+import { register } from "../../api/auth.js";
 
 export default function RegisterForm() {
   const [form, setForm] = useState({
@@ -38,13 +38,19 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <input name="username" placeholder="Username" onChange={handleChange} required className="input input-bordered w-full" />
       <input name="email" type="email" placeholder="Email" onChange={handleChange} required className="input input-bordered w-full" />
       <input name="password" type="password" placeholder="Password" onChange={handleChange} required className="input input-bordered w-full" />
       <input name="fullName" placeholder="Full Name" onChange={handleChange} required className="input input-bordered w-full" />
-      <input name="profile" type="file" accept="image/*" onChange={handleChange} required className="file-input w-full" />
-      <input name="coverImage" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
+      <div className="flex flex-col gap-2">
+        <label className="text-sm text-gray-600">Profile Image</label>
+        <input name="profile" type="file" accept="image/*" onChange={handleChange} required className="file-input w-full" />
+      </div>
+      <div className="flex flex-col gap-2">
+        <label className="text-sm text-gray-600">Cover Image (optional)</label>
+        <input name="coverImage" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
+      </div>
       <button type="submit" className="btn btn-primary w-full">Register</button>
       {error && <div className="text-red-500">{error}</div>}
       {success && <div className="text-green-500">{success}</div>}

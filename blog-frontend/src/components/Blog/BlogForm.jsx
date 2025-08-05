@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createBlog } from "../../api/blog";
+import { createBlog } from "../../api/blog.js";
 import { useNavigate } from "react-router-dom";
 
 export default function BlogForm() {
@@ -22,7 +22,7 @@ export default function BlogForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 mb-6">
+    <form onSubmit={handleSubmit} className="space-y-4 mb-8 bg-white rounded-lg shadow p-6">
       <input name="title" placeholder="Title" onChange={handleChange} required className="input input-bordered w-full" />
       <textarea name="content" placeholder="Content" onChange={handleChange} required className="textarea textarea-bordered w-full" />
       <button type="submit" className="btn btn-primary w-full">Create Blog</button>

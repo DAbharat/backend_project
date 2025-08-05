@@ -1,4 +1,4 @@
-import { logout } from "../../api/auth";
+import { logout } from "../../api/auth.js";
 import { useNavigate } from "react-router-dom";
 
 export default function LogoutButton() {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "../../api/auth";
+import { login } from "../../api/auth.js";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
@@ -23,7 +23,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <input name="username" placeholder="Username" onChange={handleChange} required className="input input-bordered w-full" />
       <input name="password" type="password" placeholder="Password" onChange={handleChange} required className="input input-bordered w-full" />
       <button type="submit" className="btn btn-primary w-full">Login</button>
