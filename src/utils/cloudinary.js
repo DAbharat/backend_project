@@ -30,6 +30,17 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
+const deleteFromCloudinary = async (publicId) => {
+    try {
+        const result = await cloudinary.uploader.destroy(publicId,{resource_type:"auto"});
+        return result;
+    } catch (error) {
+        throw new ApiError(500, "Existing file could not be deleted from Cloudinary");
+    }
+};
 
 
-export { uploadOnCloudinary }
+export { 
+    uploadOnCloudinary,
+    deleteFromCloudinary
+ }
