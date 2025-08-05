@@ -1,12 +1,67 @@
-# React + Vite
+# 📝 MERN Blog App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full-stack **Blog Application** built using the **MERN stack** (MongoDB, Express.js, React, Node.js).  
+I made this project as part of my journey to learn **backend development**, REST APIs, and connecting them to a frontend.  
+It supports features like user registration/login, creating, updating, and deleting blogs.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔐 User Authentication (Register/Login)
+- 📝 Create, Read, Update, Delete (CRUD) Blogs
+- 🧾 Clean and Simple Blog UI
+- 🔧 Built with RESTful API principles
+- 📦 Token-based authentication using JWT
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📁 Tech Stack
+
+**Frontend:**  
+- React.js  
+- React Router  
+- Axios  
+- Tailwind CSS (optional)
+
+**Backend:**  
+- Node.js  
+- Express.js  
+- MongoDB  
+- Mongoose  
+- JSON Web Token (JWT)  
+- Bcrypt.js
+
+---
+
+🛠️ Future Plans
+
+- Finish frontend UI using React
+- Add rich text editor for blog posts  
+- Improve UI/UX design
+
+---
+
+
+## ⚙️ Setup
+
+---
+
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/DAbharat/backend_project.git
+
+
+---
+
+
+✍️ License
+MIT License — feel free to use and modify.
+
+
+---
+
+## 👨‍💻 Author
+
+[@DAbharat](https://github.com/DAbharat)
+
