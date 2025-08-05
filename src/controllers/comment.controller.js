@@ -22,7 +22,7 @@ const getPostComments = asyncHandler(async (req, res) => {
     const aggregateOptions = [
         {
             $match: {
-                post: new mongoose.Types.ObjectId(postId)
+                post: new mongoose.Types.ObjectId(String(postId))
             }
         },
         {
