@@ -22,7 +22,7 @@ It supports features like user registration/login, creating, updating, and delet
 - React.js  
 - React Router  
 - Axios  
-- Tailwind CSS (optional)
+- Tailwind CSS 
 
 **Backend:**  
 - Node.js  
