@@ -38,22 +38,110 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <input name="username" placeholder="Username" onChange={handleChange} required className="input input-bordered w-full" />
-      <input name="email" type="email" placeholder="Email" onChange={handleChange} required className="input input-bordered w-full" />
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} required className="input input-bordered w-full" />
-      <input name="fullName" placeholder="Full Name" onChange={handleChange} required className="input input-bordered w-full" />
-      <div className="flex flex-col gap-2">
-        <label className="text-sm text-gray-600">Profile Image</label>
-        <input name="profile" type="file" accept="image/*" onChange={handleChange} required className="file-input w-full" />
+  <form onSubmit={handleSubmit} className="space-y-4 w-full">
+    {/* Two-column grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Username */}
+      <div className="flex flex-col gap-1">
+        <label className="text-sm font-medium text-gray-600">Username</label>
+        <input
+          name="username"
+          placeholder="Enter your username"
+          onChange={handleChange}
+          required
+          className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 outline-none text-sm"
+        />
       </div>
-      <div className="flex flex-col gap-2">
-        <label className="text-sm text-gray-600">Cover Image (optional)</label>
-        <input name="coverImage" type="file" accept="image/*" onChange={handleChange} className="file-input w-full" />
+
+      {/* Full Name */}
+      <div className="flex flex-col gap-1">
+        <label className="text-sm font-medium text-gray-600">Full Name</label>
+        <input
+          name="fullName"
+          placeholder="Enter your full name"
+          onChange={handleChange}
+          required
+          className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 outline-none text-sm"
+        />
       </div>
-      <button type="submit" className="btn btn-primary w-full">Register</button>
-      {error && <div className="text-red-500">{error}</div>}
-      {success && <div className="text-green-500">{success}</div>}
-    </form>
-  );
+    </div>
+
+    {/* Email */}
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-medium text-gray-600">Email</label>
+      <input
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+        onChange={handleChange}
+        required
+        className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 outline-none text-sm"
+      />
+    </div>
+
+    {/* Password */}
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-medium text-gray-600">Password</label>
+      <input
+        name="password"
+        type="password"
+        placeholder="••••••••"
+        onChange={handleChange}
+        required
+        className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 outline-none text-sm"
+      />
+    </div>
+
+    {/* Profile + Cover Images */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {/* Profile Image */}
+  <div className="flex flex-col gap-2">
+    <label className="text-sm font-medium text-gray-700">Profile Image</label>
+    <label className="flex flex-col items-center justify-center w-full h-20 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-indigo-400 hover:bg-indigo-50 transition">
+      <span className="text-xs text-gray-500">Click to upload</span>
+      <span className="text-sm font-medium text-indigo-600">Profile Image</span>
+      <input
+        name="profile"
+        type="file"
+        accept="image/*"
+        onChange={handleChange}
+        required
+        className="hidden"
+      />
+    </label>
+  </div>
+
+  {/* Cover Image */}
+  <div className="flex flex-col gap-2">
+    <label className="text-sm font-medium text-gray-700">Cover Image (optional)</label>
+    <label className="flex flex-col items-center justify-center w-full h-20 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-indigo-400 hover:bg-indigo-50 transition">
+      <span className="text-xs text-gray-500">Click to upload</span>
+      <span className="text-sm font-medium text-indigo-600">Cover Image</span>
+      <input
+        name="coverImage"
+        type="file"
+        accept="image/*"
+        onChange={handleChange}
+        className="hidden"
+      />
+    </label>
+  </div>
+</div>
+
+    {/* Submit */}
+    <button
+      type="submit"
+      className="mt-4 w-full py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow hover:bg-indigo-700 transition"
+    >
+      Register
+    </button>
+
+    {/* Messages */}
+    {error && <div className="text-red-500 text-sm">{error}</div>}
+    {success && <div className="text-green-600 text-sm">{success}</div>}
+  </form>
+);
+
+
+
 }

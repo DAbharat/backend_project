@@ -16,7 +16,7 @@ export default function App() {
         <Link to="/blogs" className="hover:underline">Blogs</Link>
         <Link to="/profile" className="hover:underline">Profile</Link>
       </nav>
-      <div className="max-w-2xl mx-auto p-4">
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -25,7 +25,7 @@ export default function App() {
           <Route path="/blogs/:blogId" element={<BlogDetail />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-      </div>
+      
     </Router>
   );
 }
