@@ -22,11 +22,38 @@ export default function BlogForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 mb-8 bg-white rounded-lg shadow p-6">
-      <input name="title" placeholder="Title" onChange={handleChange} required className="input input-bordered w-full" />
-      <textarea name="content" placeholder="Content" onChange={handleChange} required className="textarea textarea-bordered w-full" />
-      <button type="submit" className="btn btn-primary w-full">Create Blog</button>
-      {error && <div className="text-red-500">{error}</div>}
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-xl shadow p-6 space-y-5 border border-gray-100 hover:shadow-md transition"
+    >
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">Title</label>
+        <input
+          name="title"
+          placeholder="Enter blog title"
+          onChange={handleChange}
+          required
+          className="input input-bordered w-full"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">Content</label>
+        <textarea
+          name="content"
+          placeholder="Write your blog here..."
+          rows="5"
+          onChange={handleChange}
+          required
+          className="textarea textarea-bordered w-full"
+        />
+      </div>
+
+      <button type="submit" className="btn btn-primary w-full">
+        ✍️ Create Blog
+      </button>
+
+      {error && <div className="text-red-500 text-sm">{error}</div>}
     </form>
   );
 }

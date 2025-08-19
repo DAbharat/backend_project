@@ -3,15 +3,20 @@ import BlogForm from "../components/Blog/BlogForm.jsx";
 
 export default function Blogs() {
   return (
-    <section className="max-w-3xl mx-auto py-10">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-indigo-700 mb-2">All Blogs</h2>
-        <p className="text-gray-500">Read, create, and manage your blogs.</p>
+    <section className="max-w-4xl mx-auto py-12 px-4">
+      <div className="mb-10 text-center">
+        <h2 className="text-4xl font-extrabold text-indigo-700">📚 Blogs</h2>
+        <p className="text-gray-500 mt-2">Read, create, and share your thoughts.</p>
       </div>
-      <div className="mb-10">
+
+      <div className="mb-12">
         <BlogForm />
       </div>
-      <BlogList />
+
+      <div>
+        <h3 className="text-xl font-semibold text-gray-700 mb-4">All Posts</h3>
+        <BlogList />
+      </div>
     </section>
   );
 }
